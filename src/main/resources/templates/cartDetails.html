@@ -19,7 +19,6 @@
     <tbody>
     <tr th:each="product : ${cart.products}">
         <td>
-            <!-- Conditional rendering based on Class Type -->
             <span th:if="${product instanceof T(csd230.s26.lab1.entities.PublicationEntity)}"
                   th:text="${product.title}"></span>
             <span th:if="${product instanceof T(csd230.s26.lab1.entities.TicketEntity)}"
@@ -31,8 +30,15 @@
     </tr>
     </tbody>
 </table>
+
+<div th:unless="${cart.products.empty}">
+    <h3>Total: <span th:text="${'$' + total}"></span></h3>
+    <form th:action="@{/cart/checkout}" method="post">
+        <button type="submit">Checkout</button>
+    </form>
+</div>
+
 <br/>
 <a th:href="@{/books}">Back to Store</a>
 </body>
 </html>
-

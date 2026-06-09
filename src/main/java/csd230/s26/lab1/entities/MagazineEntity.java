@@ -2,6 +2,7 @@ package csd230.s26.lab1.entities;
 
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
+import org.springframework.format.annotation.DateTimeFormat;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
@@ -9,6 +10,8 @@ import java.util.Objects;
 @DiscriminatorValue("MAGAZINE")
 public class MagazineEntity extends PublicationEntity {
     private int orderQty;
+
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private LocalDateTime currentIssue;
 
     public MagazineEntity() {
@@ -22,7 +25,6 @@ public class MagazineEntity extends PublicationEntity {
         this.currentIssue = currentIssue;
     }
 
-    // Getters and Setters
     public int getOrderQty() { return orderQty; }
     public void setOrderQty(int orderQty) { this.orderQty = orderQty; }
 
@@ -53,6 +55,5 @@ public class MagazineEntity extends PublicationEntity {
     @Override
     public void sellItem() {
         System.out.println("Selling Magazine");
-
     }
 }

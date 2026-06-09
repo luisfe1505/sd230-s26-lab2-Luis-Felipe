@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><title>Order Confirmation</title></head>
+<body>
+<h1>Order Placed Successfully!</h1>
+<h3>Order ID: <span th:text="${order.id}"></span></h3>
+<h3>Order Date: <span th:text="${order.orderDate}"></span></h3>
+<h2>Items Purchased:</h2>
+<ul>
+    <li th:each="product : ${order.products}"
+        th:text="${product instanceof T(csd230.s26.lab1.entities.PublicationEntity) ? product.title : product.description} + ' - $' + ${product.price}">
+    </li>
+</ul>
+<h2>Final Total Paid: $<span th:text="${order.totalAmount}"></span></h2>
+<br/>
+<a th:href="@{/books}">Back to Store</a>
+</body>
+</html>

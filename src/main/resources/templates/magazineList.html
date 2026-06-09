@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><title>Magazine Inventory</title></head>
+<body>
+<p><a th:href="@{/cart}">[ View My Cart ]</a></p>
+<h1>Magazine List</h1>
+<table border="1">
+    <thead>
+    <tr>
+        <th>Title</th>
+        <th>Order Qty</th>
+        <th>Issue Date</th>
+        <th>Price</th>
+        <th>Copies</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="magazine : ${magazines}">
+        <td th:text="${magazine.title}"></td>
+        <td th:text="${magazine.orderQty}"></td>
+        <td th:text="${magazine.currentIssue}"></td>
+        <td th:text="${magazine.price}"></td>
+        <td th:text="${magazine.copies}"></td>
+        <td>
+            <a th:href="@{/magazines/edit/{id}(id=${magazine.id})}">Edit</a> |
+            <a th:href="@{/magazines/delete/{id}(id=${magazine.id})}" onclick="return confirm('Delete?')">Delete</a> |
+            <a th:href="@{/cart/add/{id}(id=${magazine.id})}">Add to Cart</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<br/>
+<a th:href="@{/magazines/add}">Add New Magazine</a> | <a th:href="@{/books}">Go to Books</a>
+</body>
+</html>
